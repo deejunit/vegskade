@@ -1,31 +1,74 @@
-<h1>Alle rapporter</h1>
+<h1>Ubehandlede rapporter</h1>
 
 <table>
   <tr>
     <th>Tittel</th>
     <th>Beskrivelse</th>
+    <% if admin_signed_in? %>
     <th>E-postadresse</th>
-    <th>Behandlet</th>
+    <% end %>
+    <th></th>
+    <% if admin_signed_in? %>
     <th></th>
     <th></th>
     <th></th>
-    <th></th>
+    <% end %>
   </tr>
 
 <% @reports.each do |report| %>
-  <tr>
+  <% if(!report.resolved) %>
+    <tr>
     <td><%= report.title %></td>
     <td><%= report.description %></td>
+    <% if admin_signed_in? %>
     <td><%= report.email %></td>
-    <td><%= report.resolved %></td>
-    <td><%= link_to 'Toggle status', toggle_report_path(report), method: :put %></td>
+    <% end %>
     <td><%= link_to 'Vis', report %></td>
+     <% if admin_signed_in? %>
+    <td><%= link_to 'Toggle status', toggle_report_path(report), method: :put %></td>
     <td><%= link_to 'Endre', edit_report_path(report) %></td>
     <td><%= link_to 'Slett', report, confirm: 'Er du sikker?', method: :delete %></td>
+    <% end %>
   </tr>
+  <% end %>
 <% end %>
 </table>
 
+<h1>Behandlede rapporter</h1>
+
+<table>
+  <tr>
+    <th>Tittel</th>
+    <th>Beskrivelse</th>
+    <% if admin_signed_in? %>
+    <th>E-postadresse</th>
+    <% end %>
+    <th></th>
+    <% if admin_signed_in? %>
+    <th></th>
+    <th></th>
+    <th></th>
+    <% end %>
+  </tr>
+
+<% @reports.each do |report| %>
+  <% if(report.resolved) %>
+  <tr>
+    <td><%= report.title %></td>
+    <td><%= report.description %></td>
+    <% if admin_signed_in? %>
+    <td><%= report.email %></td>
+    <% end %>
+    <td><%= link_to 'Vis', report %></td>
+     <% if admin_signed_in? %>
+    <td><%= link_to 'Toggle status', toggle_report_path(report), method: :put %></td>
+    <td><%= link_to 'Endre', edit_report_path(report) %></td>
+    <td><%= link_to 'Slett', report, confirm: 'Er du sikker?', method: :delete %></td>
+    <% end %>
+  </tr>
+  <% end %>
+<% end %>
+</table>
 <br />
 
 <%= link_to 'Ny innrapportering', new_report_path %>

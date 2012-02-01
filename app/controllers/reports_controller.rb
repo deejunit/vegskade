@@ -2,7 +2,7 @@
 class ReportsController < ApplicationController
   
   #Devise
-  before_filter :authenticate_admin!, :except => ['new', 'create']
+  before_filter :authenticate_admin!, :except => ['new', 'create', 'show', 'index']
 
 #Basic authentication
 #before_filter :require_admin, :except => ['new', 'create']
