@@ -1,10 +1,12 @@
-<h1>Listing reports</h1>
+<h1>Alle rapporter</h1>
 
 <table>
   <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Email</th>
+    <th>Tittel</th>
+    <th>Beskrivelse</th>
+    <th>E-postadresse</th>
+    <th>Behandlet</th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,9 +17,11 @@
     <td><%= report.title %></td>
     <td><%= report.description %></td>
     <td><%= report.email %></td>
-    <td><%= link_to 'Show', report %></td>
-    <td><%= link_to 'Edit', edit_report_path(report) %></td>
-    <td><%= link_to 'Destroy', report, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= report.resolved %></td>
+    <td><%= link_to 'Toggle status', toggle_report_path(report), method: :put %></td>
+    <td><%= link_to 'Vis', report %></td>
+    <td><%= link_to 'Endre', edit_report_path(report) %></td>
+    <td><%= link_to 'Slett', report, confirm: 'Er du sikker?', method: :delete %></td>
   </tr>
 <% end %>
 </table>

@@ -1,15 +1,19 @@
 # -*- encoding : utf-8 -*-
 class ReportsController < ApplicationController
   
-  before_filter :require_admin, :except => ['new', 'create']
+  #Devise
+  before_filter :authenticate_admin!, :except => ['new', 'create']
 
-private
-  def require_admin
-    authenticate_or_request_with_http_basic do |id, password|
-     [id, password] == ["ruby", "rocks"]
-   end
-  end
-public
+#Basic authentication
+#before_filter :require_admin, :except => ['new', 'create']
+
+#private
+ # def require_admin
+  #  authenticate_or_request_with_http_basic do |id, password|
+   #  [id, password] == ["ruby", "rocks"]
+   #end
+  #end
+#public
 
   # GET /reports
   # GET /reports.json
@@ -91,5 +95,12 @@ public
       format.html { redirect_to reports_url }
       format.json { head :no_content }
     end
+  end
+
+  def toggle
+    @report = Report.find(params[:id])
+    @report.resolved = !@report.resolved
+    @report.save
+    redirect_to reports_url
   end
 end

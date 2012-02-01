@@ -1,6 +1,12 @@
 # -*- encoding : utf-8 -*-
 Vegskade::Application.routes.draw do
-  resources :reports
+  devise_for :admins
+
+  resources :reports do
+    member do
+      put 'toggle'
+    end
+  end
 
   root :to => 'home#index'
 
@@ -19,7 +25,7 @@ Vegskade::Application.routes.draw do
   #   resources :products
 
   # Sample resource route with options:
-  #   resources :products do
+  #  resources :products do
   #     member do
   #       get 'short'
   #       post 'toggle'

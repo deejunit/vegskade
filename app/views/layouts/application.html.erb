@@ -17,12 +17,16 @@
 
         <ul class="nav">
           <li><a href="/">Forsiden</a></li>
+          <% if admin_signed_in? %>
+            <li><a href="/reports">Rapporter</a></li>
+          <% end %>
           <!--<li><a href="#about">Hva skjer?</a></li>
           <li><a href="#contact">Contact</a></li>-->
         </ul>
-        <ul class="nav secondary-nav">
+        <!--<ul class="nav secondary-nav">
         <li><a href="/reports">Admin</a></li>
-        </ul>
+        </ul>-->
+         <%= render :partial => 'common/admin_menu' %>
       </div>
     </div>
 
