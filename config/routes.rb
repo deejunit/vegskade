@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Vegskade::Application.routes.draw do
   resources :reports
 
