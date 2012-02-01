@@ -1,0 +1,23 @@
+<!-- Simple form EXAMPLE using twitter bootstrap
+
+Referenced at https://github.com/rubykurs/bootstrap
+With related gists https://gist.github.com/1698584 and https://gist.github.com/1695634
+
+app/views/reports/_form.html.erb
+
+rails generate scaffold report title:string description:text email:string
+
+-->
+
+
+<%= simple_form_for(@report, :wrapper => :inline, :html => { :class => 'form-stacked' }) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :title, label: "Tittel" %>
+  <%= f.input :description, as: :text, placeholder: "Gi oss litt informasjon om hullet du har funnet her...", label: false, input_html: {rows: 3}%>
+  <%= f.input :email, label: "E-postadresse #{questionmark}", placeholder: "ola_nordmann@email.no" %>
+
+  <%= f.button :submit, :class =>'btn primary' %>
+
+<% end %>
+
