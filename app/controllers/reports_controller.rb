@@ -56,7 +56,7 @@ public
 
     respond_to do |format|
       if @report.save
-        format.html { redirect_to root_url, notice: 'Report was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Vi har mottatt din rapport. Hjertelig takk.' }
         
       else
         format.html { render action: "new" }
